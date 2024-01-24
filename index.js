@@ -15,10 +15,16 @@ const users = [
 
 ]
 
+// Search query
 app.get('/users', (req, res) => {
-    res.send(users)
+    // res.send(users)
+    const search = req.query.search;
+    const searchResult = users.filter(user => user.name.toLowerCase().includes(search));
+    res.send(searchResult);
+    console.log(req.query);
 })
 
+// Dynamic API
 app.get('/users/:id', (req, res) => {
     const id = req.params.id;
     const user = users[id];
