@@ -1,9 +1,13 @@
 const express = require('express')
+var cors = require('cors')
+
 const app = express()
-const port = 3000
+app.use(cors());
+
+const port = 5000
 
 app.get('/', (req, res) => {
-  res.send('Hello World! 4000')
+  res.send('Hello World! 5000')
 })
 
 const users = [
@@ -15,14 +19,19 @@ const users = [
 
 ]
 
-// Search query
 app.get('/users', (req, res) => {
-    // res.send(users)
-    const search = req.query.search;
-    const searchResult = users.filter(user => user.name.toLowerCase().includes(search));
-    res.send(searchResult);
-    console.log(req.query);
+    res.send(users)
+    
 })
+
+// Search query
+// app.get('/users', (req, res) => {
+//     // res.send(users)
+//     const search = req.query.search;
+//     const searchResult = users.filter(user => user.name.toLowerCase().includes(search));
+//     res.send(searchResult);
+//     console.log(req.query);
+// })
 
 // Dynamic API
 app.get('/users/:id', (req, res) => {
